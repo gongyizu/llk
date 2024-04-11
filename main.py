@@ -11,7 +11,7 @@ from base import (
 
 gen_data()
 pygame.init()
-pygame.mixer.init()
+# pygame.mixer.init()
 
 SCREEN_WIDTH = 1500
 SCREEN_HEIGHT = 1100
@@ -19,6 +19,14 @@ BLACK = (0, 0, 0)
 BLUE = (0, 0, 255)
 RED = (255, 0, 0)
 ROLE_SIZE = 75
+
+screen_info = pygame.display.Info()
+DISPLAY_SCREEN_WIDTH = screen_info.current_w
+
+game_width = int(DISPLAY_SCREEN_WIDTH * 0.8)
+game_height = int(game_width * 9 / 16)
+
+print(f"screen_info: width={game_width}, height={game_height}")
 
 matching_pair = []
 
@@ -33,7 +41,7 @@ draw_line_time = 0
 img_dir = path.join(path.dirname(__file__), "images", "100")
 snd_dir = path.join(path.dirname(__file__), "sounds")
 
-snd_clear = pygame.mixer.Sound(path.join(snd_dir, "clear.ogg"))
+# snd_clear = pygame.mixer.Sound(path.join(snd_dir, "clear.ogg"))
 
 
 class Pokemon(pygame.sprite.Sprite):
@@ -183,7 +191,7 @@ while running:
     if showline[0] is not None:
         # 画出连接线
         if draw_line_time == 0:
-            snd_clear.play()
+            # snd_clear.play()
             # 线条需要做短暂的视觉停留，第一次绘制的时候，记录时间
             draw_line_time = pygame.time.get_ticks()
 

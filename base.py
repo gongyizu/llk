@@ -19,16 +19,20 @@ def gen_data():
     """
     数组填充数据
     """
-    tmpData = [[0 for _ in range(COLS)] for _ in range(ROWS)]
+    tmpData = []
 
     for i in range(ROWS):
         numbs = list(range(1, COLS + 1))
         random.shuffle(numbs)
-        tmpData[i] = numbs
+        tmpData.extend(numbs)
 
+    random.shuffle(tmpData)
+
+    index = 0
     for i in range(1, HEIGHT - 1):
         for j in range(1, WIDTH - 1):
-            data[i][j] = tmpData[i - 1][j - 1]
+            data[i][j] = tmpData[index]
+            index += 1
 
 
 def isHLinked(point1, point2):
